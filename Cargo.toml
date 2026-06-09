@@ -36,12 +36,17 @@ winnow = "0.7.14"
 zlink = "0.4"
 
 [dev-dependencies]
-criterion = { version = "0.8.2", features = ["html_reports"] }
+criterion = { version = "0.8.2", features = ["html_reports", "async_tokio"] }
 insta = "1.46.3"
 rand = "0.10.0"
+rcgen = "0.14.8"
 
 [[bench]]
 name = "acl"
+harness = false
+
+[[bench]]
+name = "tls"
 harness = false
 
 [profile.dev.package]
