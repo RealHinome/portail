@@ -7,43 +7,44 @@ edition = "2024"
 enum_variant_names = "allow"
 
 [dependencies]
-annotate-snippets = "0.12.11"
-anyhow = "1.0.100"
-bytes = "1.11.0"
-clap = { version = "4.5.57", features = ["derive", "string"] }
-fast-socks5 = "1.0.0"
-http = "1.4.0"
+annotate-snippets = "^0.12"
+anyhow = "^1"
+bytes = "^1"
+clap = { version = "^4", features = ["derive", "string"] }
+fast-socks5 = "^1"
+http = "^1"
 http-body-util = "0.1.3"
-# Remove once https://github.com/z-galaxy/zlink/issues/230 makes it into a release.
-futures-util = "0.3.32"
-hyper = { version = "1.8.1", features = ["full"] }
-hyper-util = { version = "0.1.20", features = ["tokio", "server", "http1"] }
-nix = { version = "0.31.1", features = ["socket", "uio", "net"] }
-peekable = { version = "0.4.1", features = ["tokio"] }
-regex = "1.12.2"
-rustls-pemfile = "2.2.0"
-serde = { version = "1.0.228", features = ["derive"] }
-serde_json = "1.0.149"
-serde_with = "3.16.1"
-thiserror = "2.0.18"
-tokio = { version = "1.49.0", features = ["full"] }
-tokio-rustls = "0.26.4"
-rustls-native-certs = "0.8"
-toml = "0.9.11"
-tracing = "0.1.44"
-tracing-subscriber = { version = "0.3.22", features = ["env-filter"] }
-winnow = "0.7.14"
-zlink = "0.4"
+hyper = { version = "^1", features = ["full"] }
+hyper-util = { version = "^0.1", features = ["tokio", "server", "http1"] }
+nix = { version = "^0.31", features = ["socket", "uio", "net"] }
+regex = "^1"
+serde = { version = "^1", features = ["derive"] }
+serde_json = "^1"
+serde_with = "^3"
+thiserror = "^2"
+tokio = { version = "^1", features = ["full"] }
+tokio-rustls = "^0.26"
+toml = "^1"
+tracing = "^0.1"
+tracing-subscriber = { version = "^0.3", features = ["env-filter"] }
+winnow = "^1"
+zlink = "^0.5"
+rustls-pki-types = "^1"
 
 [dev-dependencies]
-criterion = { version = "0.8.2", features = ["html_reports"] }
-insta = "1.46.3"
-rand = "0.10.0"
+criterion = { version = "0.8.2", features = ["html_reports", "async_tokio"] }
+insta = "1.47.2"
+rand = "0.10.1"
+rcgen = "0.14.8"
+http-body-util = "0.1"
 
 [[bench]]
 name = "acl"
 harness = false
 
+[[bench]]
+name = "tls"
+harness = false
+
 [profile.dev.package]
 insta.opt-level = 3
-similar.opt-level = 3

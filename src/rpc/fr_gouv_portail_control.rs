@@ -51,15 +51,29 @@ impl Error for ControlError {}
 pub trait Control {
     async fn set_default_backend(
         &mut self,
-        backend_id: &str,
+        backend_id: Option<&str>,
     ) -> zlink::Result<Result<(), ControlError>>;
     async fn get_current_backend(
         &mut self,
     ) -> zlink::Result<Result<GetCurrentBackendOutput, ControlError>>;
+    async fn list_backends(&mut self) -> zlink::Result<Result<ListBackendsOutput, ControlError>>;
 }
 
 /// Output parameters for the GetCurrentBackend method.
-#[derive(Debug, Clone, Serialize, Deserialize, PartialEq)]
+#[derive(Debug, Clone, Serialize, Deserialize, PartialEq, zlink::introspect::Type)]
 pub struct GetCurrentBackendOutput {
     pub backend_id: String,
+}
+
+/// Type BackendInfo.
+#[derive(Debug, Clone, Serialize, Deserialize, PartialEq, zlink::introspect::Type)]
+pub struct BackendInfo {
+    pub id: String,
+    pub current: bool,
+}
+
+/// Output parameters for the ListBackends method.
+#[derive(Debug, Clone, Serialize, Deserialize, PartialEq, zlink::introspect::Type)]
+pub struct ListBackendsOutput {
+    pub backends: Vec<BackendInfo>,
 }
