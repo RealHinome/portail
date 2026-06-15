@@ -30,6 +30,7 @@ tracing-subscriber = { version = "^0.3", features = ["env-filter"] }
 winnow = "^1"
 zlink = "^0.5"
 rustls-pki-types = "^1"
+rustls-native-certs = "0.8"
 
 [dev-dependencies]
 criterion = { version = "0.8.2", features = ["html_reports", "async_tokio"] }
